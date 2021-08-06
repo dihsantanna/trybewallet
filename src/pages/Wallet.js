@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import HeaderWallet from '../components/HeaderWallet';
 import NewExpenses from '../components/NewExpense';
 import ExpenseTable from '../components/ExpenseTable';
@@ -16,7 +17,8 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { edit, darkmode } = this.props;
+    const { edit, darkmode, email } = this.props;
+    if (!email) return <Redirect to="/" />;
     return (
       <WalletContainer darkmode={ darkmode }>
         <HeaderWallet />
@@ -32,16 +34,19 @@ class Wallet extends React.Component {
 const mapStateToProps = (state) => ({
   edit: state.wallet.edit,
   darkmode: state.user.darkmode,
+  email: state.user.email,
 });
 
 Wallet.propTypes = {
   edit: PropTypes.bool,
   darkmode: PropTypes.bool,
+  email: PropTypes.string,
 };
 
 Wallet.defaultProps = {
   edit: false,
   darkmode: false,
+  email: '',
 };
 
 export default connect(mapStateToProps)(Wallet);

@@ -1,0 +1,12 @@
+.not-found a {
+  background-color: rgb(35, 127, 255);
+  border-radius: 5px;
+  color: white;
+  opacity: 0.9;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.not-found a:hover {
+  opacity: 1;
+}
