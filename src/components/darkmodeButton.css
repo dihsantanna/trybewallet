@@ -1,0 +1,29 @@
+.moonOn {
+  color: cyan;
+  font-size: clamp(0.5em, 0.5em + 2vw, 20px);
+}
+
+.moonOff {
+  color: rgb(51, 51, 51);
+  font-size: clamp(0.5em, 0.5em + 2vw, 20px);
+}
+
+.sumOn {
+  color: orange;
+  font-size: clamp(0.5em, 0.5em + 2vw, 20px);
+}
+
+.sumOff {
+  color: black;
+  font-size: clamp(0.5em, 0.5em + 2vw, 20px);
+}
+
+.toggle-off {
+  color: cyan;
+  font-size: clamp(0.8em, 0.8em + 2vw, 22px);
+}
+
+.toggle-on {
+  color: orange;
+  font-size: clamp(0.8em, 0.8em + 2vw, 22px);
+}
