@@ -68,17 +68,21 @@ class NewExpenses extends React.Component {
   }
 
   isMobile() {
-    const { showAddExpense } = this.state;
+    const { ismobile, showAddExpense } = this.state;
     const resolution = window.screen.width;
     const width = 768;
-    if (resolution <= width) {
+    if (resolution <= width && !ismobile) {
       this.setState({ showAddExpense: false, ismobile: true });
     }
+    if (window.screen.width > width && !showAddExpense) {
+      this.setState({ showAddExpense: true, ismobile: false });
+    }
     window.onresize = () => {
-      if (resolution <= width && showAddExpense) {
+      const { ismobile: mobile, showAddExpense: show } = this.state;
+      if (window.screen.width <= width && !mobile) {
         this.setState({ showAddExpense: false, ismobile: true });
       }
-      if (resolution > width && !showAddExpense) {
+      if (window.screen.width > width && !show) {
         this.setState({ showAddExpense: true, ismobile: false });
       }
     };
@@ -158,41 +162,24 @@ class NewExpenses extends React.Component {
     );
   }
 
-  renderHiddenMenu(showAddExpense) {
-    return (
-      <label
-        htmlFor="up"
-        className="up"
-      >
-        <input
-          name="showAddExpense"
-          type="checkbox"
-          id="up"
-          onChange={ this.handleChange }
-          checked={ showAddExpense }
-        />
-        <i className="bi bi-chevron-bar-up" />
-        <span>Fechar</span>
-      </label>
-    );
-  }
-
   renderShowMenu(showAddExpense) {
     return (
       <label
-        style={ { top: `${showAddExpense ? '80vh' : '-10px'}` } }
-        htmlFor="down"
-        className="down"
+        htmlFor="show-menu"
+        className={ `${showAddExpense ? 'up' : 'down'}` }
       >
         <input
           name="showAddExpense"
           type="checkbox"
-          id="down"
+          id="show-menu"
           onChange={ this.handleChange }
           checked={ showAddExpense }
         />
-        <i className="bi bi-chevron-bar-down" />
-        <span>Adicionar Despesa</span>
+        <i
+          className={ `bi bi-chevron-bar-${showAddExpense ? 'up'
+            : 'down'}` }
+        />
+        <span>{`${showAddExpense ? 'Fechar' : 'Adicionar Despesa'}`}</span>
       </label>
     );
   }
@@ -209,7 +196,6 @@ class NewExpenses extends React.Component {
           className="form-newExpense"
           method="get"
         >
-          {this.renderHiddenMenu(showAddExpense)}
           {this.renderValorInput(value)}
           {this.renderDescriptionInput(description)}
           {this.renderSelectCurrencies(currency, currencies)}

@@ -5,10 +5,11 @@ import trybeWalletLogo from '../images/trybe-wallet.gif';
 import trybeWalletLogoBlank from '../images/trybe-wallet_blank.gif';
 import DarkmodeButton from './DarkmodeButton';
 import HeaderWalletStyled from './styledComponents/HeaderWalletStyled';
+import Loading from './Loading';
 
 class HeaderWallet extends React.Component {
   render() {
-    const { email, expenses, darkmode } = this.props;
+    const { email, expenses, darkmode, isFetching } = this.props;
     const totalExpenses = expenses
       .reduce((total, expense) => {
         const { currency } = expense;
@@ -20,6 +21,7 @@ class HeaderWallet extends React.Component {
       }, 0);
     return (
       <HeaderWalletStyled darkmode={ darkmode }>
+        {isFetching ? <Loading /> : ''}
         <img
           className="logo-wallet"
           src={ darkmode ? trybeWalletLogoBlank : trybeWalletLogo }
@@ -58,16 +60,14 @@ const mapStateToProps = (state) => ({
   email: state.user.email,
   expenses: state.wallet.expenses,
   darkmode: state.user.darkmode,
+  isFetching: state.wallet.isFetching,
 });
 
 HeaderWallet.propTypes = {
   email: PropTypes.string.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
-  darkmode: PropTypes.bool,
-};
-
-HeaderWallet.defaultProps = {
-  darkmode: false,
+  darkmode: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(HeaderWallet);

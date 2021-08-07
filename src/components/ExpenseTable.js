@@ -34,6 +34,7 @@ class ExpenseTable extends React.Component {
             deleteExpense(id);
             saveUserLocalStorage();
           } }
+          disabled={ edit }
         >
           <i className="bi bi-trash" />
         </button>

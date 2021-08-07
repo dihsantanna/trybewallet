@@ -116,6 +116,7 @@ button:active {
   display: flex;
   font-size: clamp(0.4em, 0.4em + 2vw, 14px);
   justify-content: space-around;
+  margin-top: 0;
   width: 100%;
 }
 
@@ -324,6 +325,12 @@ button:active {
   width: 30px;
 }
 
+.delete-expense:disabled {
+  box-shadow: 0 0 4px 2px rgb(139, 139, 139);
+  cursor: default;
+  opacity: 0.9;
+}
+
 @media screen and ( max-width : 768px ) {
 
   .wallet-container {
@@ -385,13 +392,15 @@ button:active {
   .form-contain .up {
     color: slategray;
     display: flex;
-    font-size: 25px;
+    flex-direction: column;
+    font-size: 20px;
     font-weight: 600;
     position: absolute;
     text-align: center;
-    top: -10px;
+    top: -5px;
+    transition: 1s all;
     width: 100%;
-    z-index: 997;
+    z-index: 9999;
   }
 
   .form-contain .up input {
@@ -413,13 +422,14 @@ button:active {
     font-weight: 600;
     position: absolute;
     text-align: center;
+    top: -5px;
     transition: 1s all;
     width: 100%;
     z-index: 9999;
   }
 
   .form-contain .down input {
-    left: -100%;
+    left: -200vw;
     position: absolute;
   }
 
@@ -462,6 +472,7 @@ button:active {
     flex-direction: column;
     height: 80vh;
     justify-content: space-around;
+    margin-top: -81vh;
     position: absolute;
     transition: all 1s;
     width: 100vw;

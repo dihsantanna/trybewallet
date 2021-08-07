@@ -9,7 +9,6 @@ const saveUserLocalStorage = () => {
   };
 
   localStorage.setItem('user', JSON.stringify(infoUser));
-  console.log(infoUser);
 };
 
 export default saveUserLocalStorage;
