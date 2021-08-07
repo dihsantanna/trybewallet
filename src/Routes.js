@@ -8,8 +8,8 @@ class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={ (props) => (<Login { ...props } />) } />
         <Route path="/carteira" component={ Wallet } />
+        <Route exact path="/" render={ (props) => (<Login { ...props } />) } />
         <Route component={ NotFound } />
       </Switch>
     );
